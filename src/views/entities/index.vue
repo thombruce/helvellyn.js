@@ -17,9 +17,9 @@ div
       template(v-slot:item.published_at="{ item }")
         span {{ item.published ? new Date(item.published_at).toLocaleDateString() : '' }}
       template(v-slot:item.actions="{ item }")
-        v-btn(:to="{ name: 'entity_path', params: { entity_id: item.slug } }" icon)
+        v-btn(:to="{ name: 'entity_path', params: { entityId: item.slug } }" icon)
           v-icon(small) mdi-eye
-        v-btn(:to="{ name: 'edit_entity_path', params: { entity_id: item.slug } }" icon)
+        v-btn(:to="{ name: 'edit_entity_path', params: { entityId: item.slug } }" icon)
           v-icon(small) mdi-pencil
 
 </template>
@@ -69,7 +69,7 @@ export default {
   methods: {
     fetchData () {
       if (!this.workspace.permissions.list_entities) {
-        this.$router.replace({ name: 'templates_path', params: { workspace_id: this.workspace.slug } })
+        this.$router.replace({ name: 'templates_path', params: { workspaceId: this.workspace.slug } })
       }
       const query = {
         page: this.options.page,
@@ -80,8 +80,8 @@ export default {
       this.$store.dispatch(
         'entities/index',
         {
-          workspace_id: this.$route.params.workspace_id,
-          template_id: this.$route.params.template_id,
+          workspaceId: this.$route.params.workspaceId,
+          templateId: this.$route.params.templateId,
           query
         }
       ).then((data) => {

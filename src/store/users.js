@@ -8,18 +8,18 @@ const state = () => ({
 })
 
 const getters = {
-  forWorkspace: (state, getters, rootState) => (workspace_id) => {
-    return rootState.workspaces.list[workspace_id].users
+  forWorkspace: (state, getters, rootState) => (workspaceId) => {
+    return rootState.workspaces.list[workspaceId].users
   }
 }
 
 const actions = {
   index ({ commit }, params) {
     return axios
-      .get('/workspaces/' + params.workspace_id + '/users')
+      .get('/workspaces/' + params.workspaceId + '/users')
       .then((res) => {
         commit('insert', res.data)
-        commit('workspaces/addUsers', { workspace_id: params.workspace_id, users: res.data }, { root: true }) // TODO: IDs only
+        commit('workspaces/addUsers', { workspaceId: params.workspaceId, users: res.data }, { root: true }) // TODO: IDs only
       })
       .catch(function (error) {
         console.log(error)
@@ -27,7 +27,7 @@ const actions = {
   },
   show ({ commit }, params) {
     return axios
-      .get('/workspaces/' + params.workspace_id + '/users/' + params.user_id)
+      .get('/workspaces/' + params.workspaceId + '/users/' + params.userId)
       .then((res) => {
         commit('insert', res.data)
       })
@@ -37,7 +37,7 @@ const actions = {
   },
   invite ({ state, commit }, params) {
     return axios
-      .post('/workspaces/' + params.workspace_id + '/users/invite', params.data)
+      .post('/workspaces/' + params.workspaceId + '/users/invite', params.data)
       .then((res) => {
         commit('insert', res.data)
       })
@@ -47,7 +47,7 @@ const actions = {
   },
   update ({ state, commit }, params) {
     return axios
-      .patch('/workspaces/' + params.workspace_id + '/users/' + params.user_id, params.data)
+      .patch('/workspaces/' + params.workspaceId + '/users/' + params.userId, params.data)
       .then((res) => {
         commit('insert', res.data)
       })

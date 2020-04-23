@@ -37,8 +37,8 @@ export default {
   },
   methods: {
     create: function () {
-      this.$store.dispatch('templates/create', { workspace_id: this.$route.params.workspace_id, data: { template: this.template } }).then((res) => {
-        this.$router.push({ name: 'entities_path', params: { template_id: res.slug } })
+      this.$store.dispatch('templates/create', { workspaceId: this.$route.params.workspaceId, data: { template: this.template } }).then((res) => {
+        this.$router.push({ name: 'entities_path', params: { templateId: res.slug } })
       }).catch((errors) => {
         console.log(errors)
         this.template.errors = errors

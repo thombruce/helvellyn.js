@@ -48,7 +48,7 @@ div
               v-btn(@click="dialog = false") Cancel
               v-btn(color="error" @click="destroy") Delete Workspace
 
-      router-link(:to="{ name: 'templates_path', params: { workspace_id: $route.params.workspace_id } }") Back
+      router-link(:to="{ name: 'templates_path', params: { workspaceId: $route.params.workspaceId } }") Back
 </template>
 
 <script>
@@ -75,28 +75,28 @@ export default {
   methods: {
     fetchData () {
       this.workspace = null
-      this.$store.dispatch('workspaces/show', { workspace_id: this.$route.params.workspace_id }).then(() => {
-        this.workspace = this.$store.state.workspaces.list[this.$route.params.workspace_id]
+      this.$store.dispatch('workspaces/show', { workspaceId: this.$route.params.workspaceId }).then(() => {
+        this.workspace = this.$store.state.workspaces.list[this.$route.params.workspaceId]
         if (!this.workspace.permissions.update_workspace) {
-          this.$router.replace({ name: 'templates_path', params: { workspace_id: this.workspace.slug } })
+          this.$router.replace({ name: 'templates_path', params: { workspaceId: this.workspace.slug } })
         }
       })
     },
     update: function () {
-      this.$store.dispatch('workspaces/update', { workspace_id: this.$route.params.workspace_id, data: { workspace: this.workspace } }).then((res) => {
-        this.$router.push({ name: 'templates_path', params: { workspace_id: res.slug } })
+      this.$store.dispatch('workspaces/update', { workspaceId: this.$route.params.workspaceId, data: { workspace: this.workspace } }).then((res) => {
+        this.$router.push({ name: 'templates_path', params: { workspaceId: res.slug } })
       }).catch((errors) => {
         this.workspace.errors = errors
       })
     },
     destroy: function () {
-      this.$store.dispatch('workspaces/destroy', { workspace_id: this.$route.params.workspace_id }).then(() => {
+      this.$store.dispatch('workspaces/destroy', { workspaceId: this.$route.params.workspaceId }).then(() => {
         this.$router.push('/')
       })
     },
     regenToken: function () {
-      this.$store.dispatch('workspaces/token', { workspace_id: this.$route.params.workspace_id }).then(() => {
-        this.workspace = this.$store.state.workspaces.list[this.$route.params.workspace_id]
+      this.$store.dispatch('workspaces/token', { workspaceId: this.$route.params.workspaceId }).then(() => {
+        this.workspace = this.$store.state.workspaces.list[this.$route.params.workspaceId]
       })
     }
   }

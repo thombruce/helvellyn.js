@@ -29,8 +29,8 @@ export default {
   },
   methods: {
     create: function () {
-      this.$store.dispatch('entities/create', { workspace_id: this.$route.params.workspace_id, template_id: this.$route.params.template_id, data: { [this.template.slug]: this.entity } }).then((res) => {
-        this.$router.push({ name: 'entity_path', params: { entity_id: res.slug } })
+      this.$store.dispatch('entities/create', { workspaceId: this.$route.params.workspaceId, templateId: this.$route.params.templateId, data: { [this.template.slug]: this.entity } }).then((res) => {
+        this.$router.push({ name: 'entity_path', params: { entityId: res.slug } })
       }).catch((errors) => {
         this.entity.errors = errors
       })

@@ -22,7 +22,7 @@ const actions = {
   },
   show ({ commit }, params) {
     return axios
-      .get('/workspaces/' + params.workspace_id)
+      .get('/workspaces/' + params.workspaceId)
       .then((res) => {
         commit('insert', res.data)
       })
@@ -43,9 +43,9 @@ const actions = {
   },
   update ({ state, commit }, params) {
     return axios
-      .patch('/workspaces/' + params.workspace_id, params.data)
+      .patch('/workspaces/' + params.workspaceId, params.data)
       .then((res) => {
-        commit('modify', { slug: params.workspace_id, data: res.data })
+        commit('modify', { slug: params.workspaceId, data: res.data })
         return Promise.resolve(state.list[res.data.slug])
       })
       .catch((error) => {
@@ -54,9 +54,9 @@ const actions = {
   },
   token ({ state, commit }, params) {
     return axios
-      .patch('/workspaces/' + params.workspace_id + '/token')
+      .patch('/workspaces/' + params.workspaceId + '/token')
       .then((res) => {
-        commit('modify', { slug: params.workspace_id, data: res.data })
+        commit('modify', { slug: params.workspaceId, data: res.data })
         return Promise.resolve(state.list[res.data.slug])
       })
       .catch((error) => {
@@ -65,9 +65,9 @@ const actions = {
   },
   destroy ({ commit }, params) {
     return axios
-      .delete('/workspaces/' + params.workspace_id)
+      .delete('/workspaces/' + params.workspaceId)
       .then((res) => {
-        commit('remove', params.workspace_id)
+        commit('remove', params.workspaceId)
       })
       .catch(function (error) {
         console.log(error)
@@ -90,7 +90,7 @@ const mutations = {
     }
   },
   addUsers (state, params) {
-    state.list[params.workspace_id] = { ...state.list[params.workspace_id], ...prototype, ...{ users: params.users } }
+    state.list[params.workspaceId] = { ...state.list[params.workspaceId], ...prototype, ...{ users: params.users } }
   },
   remove (state, id) {
     Vue.delete(state.list, id)

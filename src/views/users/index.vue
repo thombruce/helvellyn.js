@@ -13,11 +13,11 @@ div
     tbody
       tr(v-for="user in users")
         td
-          router-link(:to="{ name: 'user_path', params: { user_id: user.id } }") {{ user.name }}
+          router-link(:to="{ name: 'user_path', params: { userId: user.id } }") {{ user.name }}
         td {{ user.role }}
         td
-          router-link.mr-1(:to="{ name: 'user_path', params: { user_id: user.id } }") View
-          router-link.mr-1(:to="{ name: 'edit_user_path', params: { user_id: user.id } }") Edit
+          router-link.mr-1(:to="{ name: 'user_path', params: { userId: user.id } }") View
+          router-link.mr-1(:to="{ name: 'edit_user_path', params: { userId: user.id } }") Edit
 
   p.lead.text-center(v-else) No items to show.
 </template>
@@ -39,11 +39,11 @@ export default {
   methods: {
     fetchData () {
       this.users = null
-      this.$store.dispatch('users/index', { workspace_id: this.$route.params.workspace_id }).then(() => {
+      this.$store.dispatch('users/index', { workspaceId: this.$route.params.workspaceId }).then(() => {
         // this.users = this.$store.state.users.list
         this.users = this.$store.getters['users/forWorkspace'](this.workspace.slug)
         if (!this.workspace.permissions.list_users) {
-          this.$router.replace({ name: 'templates_path', params: { workspace_id: this.workspace.slug } })
+          this.$router.replace({ name: 'templates_path', params: { workspaceId: this.workspace.slug } })
         }
       })
     }

@@ -1,9 +1,9 @@
 <template lang="pug">
-v-select(:label="label" :items="field_types" v-model="inputVal")
+v-select(:label="label" :items="fieldTypes" v-model="inputVal")
 </template>
 
 <script>
-import FieldTypes from '../mixins/field_types.js'
+import FieldTypes from '../mixins/fieldTypes.js'
 
 export default {
   props: [

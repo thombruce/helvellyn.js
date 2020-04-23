@@ -1,7 +1,7 @@
-const field_types = {
+const fieldTypes = {
   data () {
     return {
-      field_types: [
+      fieldTypes: [
         {
           text: 'Short Text',
           value: 'String',
@@ -32,7 +32,7 @@ const field_types = {
   }
 }
 
-export default field_types
+export default fieldTypes
 
 // TODO: Additional types:
 //       - tags, but how to make these queryable accross entities (as additional template, maybe?)

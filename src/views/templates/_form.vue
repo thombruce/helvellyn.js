@@ -43,7 +43,7 @@ v-form(ref="form" :model="template")
             span(class="headline") New Field
           v-container
             v-row
-              v-col(v-for="field_type in field_types" cols="12" sm="6")
+              v-col(v-for="field_type in fieldTypes" cols="12" sm="6")
                 v-card(@click="addField(field_type.value)")
                   v-card-text.text-center
                     v-icon(x-large) {{ field_type.icon }}
@@ -56,7 +56,7 @@ v-form(ref="form" :model="template")
 </template>
 
 <script>
-import FieldTypes from '../../mixins/field_types.js'
+import FieldTypes from '../../mixins/fieldTypes.js'
 
 import VDynamicFieldForm from '../../components/VDynamicFieldForm.vue'
 

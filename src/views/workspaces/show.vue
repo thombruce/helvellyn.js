@@ -21,8 +21,8 @@ export default {
   methods: {
     fetchData () {
       this.workspace = null
-      this.$store.dispatch('workspaces/show', { workspace_id: this.$route.params.workspace_id }).then(() => {
-        this.workspace = this.$store.state.workspaces.list[this.$route.params.workspace_id]
+      this.$store.dispatch('workspaces/show', { workspaceId: this.$route.params.workspaceId }).then(() => {
+        this.workspace = this.$store.state.workspaces.list[this.$route.params.workspaceId]
         if (!this.workspace.permissions.view_workspace) {
           this.$router.replace({ name: 'root_path' })
         }

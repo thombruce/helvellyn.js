@@ -17,26 +17,26 @@ const router = new VueRouter({
     { path: '/account', name: 'account_path', component: () => import('../views/authentication/account.vue') },
     { path: '/workspaces', name: 'workspaces_path', component: WorkspaceIndex },
     { path: '/workspaces/new', name: 'new_workspace_path', component: () => import('../views/workspaces/new.vue') },
-    { path: '/:workspace_id/edit', name: 'edit_workspace_path', component: () => import('../views/workspaces/edit.vue') },
+    { path: '/:workspaceId/edit', name: 'edit_workspace_path', component: () => import('../views/workspaces/edit.vue') },
     {
-      path: '/:workspace_id',
+      path: '/:workspaceId',
       component: () => import('../views/workspaces/show.vue'),
       children: [
         { path: '', name: 'templates_path', component: () => import('../views/templates/index.vue') },
         { path: 'users', name: 'users_path', component: () => import('../views/users/index.vue') },
         { path: 'users/new', name: 'new_user_path', component: () => import('../views/users/new.vue') },
-        { path: 'users/:user_id/edit', name: 'edit_user_path', component: () => import('../views/users/edit.vue') },
-        { path: 'users/:user_id', name: 'user_path', component: () => import('../views/users/show.vue') },
+        { path: 'users/:userId/edit', name: 'edit_user_path', component: () => import('../views/users/edit.vue') },
+        { path: 'users/:userId', name: 'user_path', component: () => import('../views/users/show.vue') },
         { path: 'templates/new', name: 'new_template_path', component: () => import('../views/templates/new.vue') },
-        { path: ':template_id/edit', name: 'edit_template_path', component: () => import('../views/templates/edit.vue') },
+        { path: ':templateId/edit', name: 'edit_template_path', component: () => import('../views/templates/edit.vue') },
         {
-          path: ':template_id',
+          path: ':templateId',
           component: () => import('../views/templates/show.vue'),
           children: [
             { path: '', name: 'entities_path', component: () => import('../views/entities/index.vue') },
             { path: 'new', name: 'new_entity_path', component: () => import('../views/entities/new.vue') },
-            { path: ':entity_id/edit', name: 'edit_entity_path', component: () => import('../views/entities/edit.vue') },
-            { path: ':entity_id', name: 'entity_path', component: () => import('../views/entities/show.vue') }
+            { path: ':entityId/edit', name: 'edit_entity_path', component: () => import('../views/entities/edit.vue') },
+            { path: ':entityId', name: 'entity_path', component: () => import('../views/entities/show.vue') }
           ]
         }
       ]

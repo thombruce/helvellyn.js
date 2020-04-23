@@ -8,13 +8,13 @@ const state = () => ({
 })
 
 const getters = {
-  forWorkspace: (state) => (workspace_id) => {
-    return Object.values(state.list).filter(template => template.workspace_id === workspace_id)
+  forWorkspace: (state) => (workspaceId) => {
+    return Object.values(state.list).filter(template => template.workspaceId === workspaceId)
   },
-  findBySlug: (state) => (workspace_id, slug) => {
+  findBySlug: (state) => (workspaceId, slug) => {
     // TODO: This would do better to allow a hash of params and inclusively use them in the find function below.
     return Object.values(state.list).find(
-      template => (template.workspace_id === workspace_id) && (template.slug === slug)
+      template => (template.workspaceId === workspaceId) && (template.slug === slug)
     )
   }
 }
@@ -22,7 +22,7 @@ const getters = {
 const actions = {
   index ({ commit }, params) {
     return axios
-      .get('/workspaces/' + params.workspace_id + '/templates')
+      .get('/workspaces/' + params.workspaceId + '/templates')
       .then((res) => {
         commit('insert', res.data)
       })
@@ -32,7 +32,7 @@ const actions = {
   },
   show ({ commit }, params) {
     return axios
-      .get('/workspaces/' + params.workspace_id + '/templates/' + params.template_id)
+      .get('/workspaces/' + params.workspaceId + '/templates/' + params.templateId)
       .then((res) => {
         commit('insert', res.data)
       })
@@ -42,7 +42,7 @@ const actions = {
   },
   create ({ state, commit }, params) {
     return axios
-      .post('/workspaces/' + params.workspace_id + '/templates', params.data)
+      .post('/workspaces/' + params.workspaceId + '/templates', params.data)
       .then((res) => {
         commit('insert', res.data)
         return Promise.resolve(state.list[res.data.slug])
@@ -53,9 +53,9 @@ const actions = {
   },
   update ({ state, commit }, params) {
     return axios
-      .patch('/workspaces/' + params.workspace_id + '/templates/' + params.template_id, params.data)
+      .patch('/workspaces/' + params.workspaceId + '/templates/' + params.templateId, params.data)
       .then((res) => {
-        commit('modify', { slug: params.template_id, data: res.data })
+        commit('modify', { slug: params.templateId, data: res.data })
         return Promise.resolve(state.list[res.data.slug])
       })
       .catch((error) => {
@@ -64,9 +64,9 @@ const actions = {
   },
   destroy ({ commit }, params) {
     return axios
-      .delete('/workspaces/' + params.workspace_id + '/templates/' + params.template_id)
+      .delete('/workspaces/' + params.workspaceId + '/templates/' + params.templateId)
       .then((res) => {
-        commit('remove', params.template_id)
+        commit('remove', params.templateId)
       })
       .catch(function (error) {
         console.log(error)

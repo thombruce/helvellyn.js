@@ -21,11 +21,11 @@ export default {
   methods: {
     fetchData () {
       this.template = null
-      this.$store.dispatch('templates/show', { workspace_id: this.$route.params.workspace_id, template_id: this.$route.params.template_id }).then(() => {
-        // this.template = this.$store.state.templates.list[this.$route.params.template_id]
-        this.template = this.$store.getters['templates/findBySlug'](this.workspace.id, this.$route.params.template_id)
+      this.$store.dispatch('templates/show', { workspaceId: this.$route.params.workspaceId, templateId: this.$route.params.templateId }).then(() => {
+        // this.template = this.$store.state.templates.list[this.$route.params.templateId]
+        this.template = this.$store.getters['templates/findBySlug'](this.workspace.id, this.$route.params.templateId)
         if (!this.template.permissions.view_template) {
-          this.$router.replace({ name: 'templates_path', params: { workspace_id: this.workspace.slug } })
+          this.$router.replace({ name: 'templates_path', params: { workspaceId: this.workspace.slug } })
         }
       })
     }

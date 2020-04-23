@@ -29,16 +29,16 @@ export default {
     // TODO: Add submit method
     fetchData () {
       this.user = null
-      this.$store.dispatch('users/show', { workspace_id: this.$route.params.workspace_id, user_id: this.$route.params.user_id }).then(() => {
-        this.user = this.$store.state.users.list[this.$route.params.user_id]
-        // this.user = this.$store.getters['users/findBySlug'](this.workspace.id, this.$route.params.user_id)
+      this.$store.dispatch('users/show', { workspaceId: this.$route.params.workspaceId, userId: this.$route.params.userId }).then(() => {
+        this.user = this.$store.state.users.list[this.$route.params.userId]
+        // this.user = this.$store.getters['users/findBySlug'](this.workspace.id, this.$route.params.userId)
         if (!this.user.permissions.update_user) {
-          this.$router.replace({ name: 'users_path', params: { workspace_id: this.workspace.slug } })
+          this.$router.replace({ name: 'users_path', params: { workspaceId: this.workspace.slug } })
         }
       })
     },
     submit () {
-      this.$store.dispatch('users/update', { workspace_id: this.$route.params.workspace_id, user_id: this.$route.params.user_id, data: { user: this.user } }).then((res) => {
+      this.$store.dispatch('users/update', { workspaceId: this.$route.params.workspaceId, userId: this.$route.params.userId, data: { user: this.user } }).then((res) => {
         this.$router.push({ name: 'users_path' })
       }).catch((errors) => {
         console.log(errors)

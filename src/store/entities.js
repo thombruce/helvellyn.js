@@ -8,36 +8,36 @@ const state = () => ({
 })
 
 const getters = {
-  forTemplate: (state) => (template_id) => {
-    return Object.values(state.list).filter(entity => entity.template_id === template_id)
+  forTemplate: (state) => (templateId) => {
+    return Object.values(state.list).filter(entity => entity.templateId === templateId)
 
     // NOTE: The below uses the same approach but returns an Object, rather than an Array.
     //       I don't know that there's any reason an Array won't do.
 
     // let entriesForTemplate = {}
     // Object.values(state.list)
-    //       .filter(entity => entity.template_id === template_id)
+    //       .filter(entity => entity.templateId === templateId)
     //       .forEach((entity) => {
     //         entriesForTemplate[entity.slug] = { ...prototype, ...entity }
     //       })
     // return entriesForTemplate
   },
-  findBySlug: (state) => (template_id, slug) => {
+  findBySlug: (state) => (templateId, slug) => {
     // TODO: This would do better to allow a hash of params and inclusively use them in the find function below.
     return Object.values(state.list).find(
-      entity => (entity.template_id === template_id) && (entity.slug === slug)
+      entity => (entity.templateId === templateId) && (entity.slug === slug)
     )
   }
 }
 
 const actions = {
   index ({ commit }, params) {
-    const workspace_id = params.workspace_id
-    const template_id = params.template_id
+    const workspaceId = params.workspaceId
+    const templateId = params.templateId
     const query = params.query
 
     return axios
-      .get('/workspaces/' + workspace_id + '/templates/' + template_id + '/entities', { params: query })
+      .get('/workspaces/' + workspaceId + '/templates/' + templateId + '/entities', { params: query })
       .then((res) => {
         commit('insert', res.data)
         return res.data
@@ -47,12 +47,12 @@ const actions = {
       })
   },
   show ({ commit }, params) {
-    const workspace_id = params.workspace_id
-    const template_id = params.template_id
-    const entity_id = params.entity_id
+    const workspaceId = params.workspaceId
+    const templateId = params.templateId
+    const entityId = params.entityId
 
     return axios
-      .get('/workspaces/' + workspace_id + '/templates/' + template_id + '/entities/' + entity_id)
+      .get('/workspaces/' + workspaceId + '/templates/' + templateId + '/entities/' + entityId)
       .then((res) => {
         commit('insert', res.data)
         return res.data
@@ -62,12 +62,12 @@ const actions = {
       })
   },
   create ({ state, commit }, params) {
-    const workspace_id = params.workspace_id
-    const template_id = params.template_id
+    const workspaceId = params.workspaceId
+    const templateId = params.templateId
     const payload = params.data
 
     return axios
-      .post('/workspaces/' + workspace_id + '/templates/' + template_id + '/entities', payload)
+      .post('/workspaces/' + workspaceId + '/templates/' + templateId + '/entities', payload)
       .then((res) => {
         commit('insert', res.data)
         return Promise.resolve(state.list[res.data.slug]) // TODO: How should this be altered?
@@ -77,15 +77,15 @@ const actions = {
       })
   },
   update ({ state, commit }, params) {
-    const workspace_id = params.workspace_id
-    const template_id = params.template_id
-    const entity_id = params.entity_id
+    const workspaceId = params.workspaceId
+    const templateId = params.templateId
+    const entityId = params.entityId
     const payload = params.data
 
     return axios
-      .patch('/workspaces/' + workspace_id + '/templates/' + template_id + '/entities/' + entity_id, payload)
+      .patch('/workspaces/' + workspaceId + '/templates/' + templateId + '/entities/' + entityId, payload)
       .then((res) => {
-        commit('modify', { slug: params.entity_id, data: res.data })
+        commit('modify', { slug: params.entityId, data: res.data })
         return Promise.resolve(state.list[res.data.slug]) // TODO: How should this be altered?
       })
       .catch((error) => {
@@ -93,14 +93,14 @@ const actions = {
       })
   },
   destroy ({ commit }, params) {
-    const workspace_id = params.workspace_id
-    const template_id = params.template_id
-    const entity_id = params.entity_id
+    const workspaceId = params.workspaceId
+    const templateId = params.templateId
+    const entityId = params.entityId
 
     return axios
-      .delete('/workspaces/' + workspace_id + '/templates/' + template_id + '/entities/' + entity_id)
+      .delete('/workspaces/' + workspaceId + '/templates/' + templateId + '/entities/' + entityId)
       .then((res) => {
-        commit('remove', params.entity_id)
+        commit('remove', params.entityId)
         // TODO: What should be returned here?
       })
       .catch(function (error) {

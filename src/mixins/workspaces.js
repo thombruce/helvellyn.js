@@ -19,8 +19,8 @@ const workspaces = {
       })
     },
     setCurrentWorkspace () {
-      if (this.$route.params.workspace_id) {
-        this.currentWorkspace = this.workspaces[this.$route.params.workspace_id]
+      if (this.$route.params.workspaceId) {
+        this.currentWorkspace = this.workspaces[this.$route.params.workspaceId]
       } else {
         this.currentWorkspace = null
       }

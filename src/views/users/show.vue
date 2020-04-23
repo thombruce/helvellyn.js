@@ -9,7 +9,7 @@ div(v-if="user")
     strong Role
     | &nbsp;
     span {{ user.role }}
-  router-link(:to="{ name: 'edit_user_path', params: { workspace_id: workspace.slug } }") Edit
+  router-link(:to="{ name: 'edit_user_path', params: { workspaceId: workspace.slug } }") Edit
 </template>
 
 <script>
@@ -29,11 +29,11 @@ export default {
   methods: {
     fetchData () {
       this.user = null
-      this.$store.dispatch('users/show', { workspace_id: this.$route.params.workspace_id, user_id: this.$route.params.user_id }).then(() => {
-        this.user = this.$store.state.users.list[this.$route.params.user_id]
-        // this.user = this.$store.getters['users/findBySlug'](this.workspace.id, this.$route.params.user_id)
+      this.$store.dispatch('users/show', { workspaceId: this.$route.params.workspaceId, userId: this.$route.params.userId }).then(() => {
+        this.user = this.$store.state.users.list[this.$route.params.userId]
+        // this.user = this.$store.getters['users/findBySlug'](this.workspace.id, this.$route.params.userId)
         if (!this.user.permissions.view_user) {
-          this.$router.replace({ name: 'templates_path', params: { workspace_id: this.workspace.slug } })
+          this.$router.replace({ name: 'templates_path', params: { workspaceId: this.workspace.slug } })
         }
       })
     }

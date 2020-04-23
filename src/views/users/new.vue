@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     submit () {
-      this.$store.dispatch('users/invite', { workspace_id: this.$route.params.workspace_id, data: { user: this.user } }).then((res) => {
+      this.$store.dispatch('users/invite', { workspaceId: this.$route.params.workspaceId, data: { user: this.user } }).then((res) => {
         this.$router.push({ name: 'users_path' })
       }).catch((errors) => {
         console.log(errors)

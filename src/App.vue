@@ -5,12 +5,12 @@
 </template>
 
 <script>
-const default_layout = 'application'
+const defaultLayout = 'application'
 
 export default {
   computed: {
     layout () {
-      return (this.$route.meta.layout || default_layout) + '-layout'
+      return (this.$route.meta.layout || defaultLayout) + '-layout'
     }
   },
   created () {
