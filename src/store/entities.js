@@ -9,14 +9,14 @@ const state = () => ({
 
 const getters = {
   forTemplate: (state) => (templateId) => {
-    return Object.values(state.list).filter(entity => entity.templateId === templateId)
+    return Object.values(state.list).filter(entity => entity.template_id === templateId)
 
     // NOTE: The below uses the same approach but returns an Object, rather than an Array.
     //       I don't know that there's any reason an Array won't do.
 
     // let entriesForTemplate = {}
     // Object.values(state.list)
-    //       .filter(entity => entity.templateId === templateId)
+    //       .filter(entity => entity.template_id === templateId)
     //       .forEach((entity) => {
     //         entriesForTemplate[entity.slug] = { ...prototype, ...entity }
     //       })
@@ -25,7 +25,7 @@ const getters = {
   findBySlug: (state) => (templateId, slug) => {
     // TODO: This would do better to allow a hash of params and inclusively use them in the find function below.
     return Object.values(state.list).find(
-      entity => (entity.templateId === templateId) && (entity.slug === slug)
+      entity => (entity.template_id === templateId) && (entity.slug === slug)
     )
   }
 }

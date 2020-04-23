@@ -9,12 +9,12 @@ const state = () => ({
 
 const getters = {
   forWorkspace: (state) => (workspaceId) => {
-    return Object.values(state.list).filter(template => template.workspaceId === workspaceId)
+    return Object.values(state.list).filter(template => template.workspace_id === workspaceId)
   },
   findBySlug: (state) => (workspaceId, slug) => {
     // TODO: This would do better to allow a hash of params and inclusively use them in the find function below.
     return Object.values(state.list).find(
-      template => (template.workspaceId === workspaceId) && (template.slug === slug)
+      template => (template.workspace_id === workspaceId) && (template.slug === slug)
     )
   }
 }
