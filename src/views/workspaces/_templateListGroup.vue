@@ -1,6 +1,6 @@
 <template lang="pug">
 v-list-group(prepend-icon="mdi-file" :value="isCurrent")
-  template(v-slot:activator)
+  template(v-slot:activator="")
     v-list-item-title {{ template.plural }}
   v-list-item(link :to="{ name: 'entities_path', params: { templateId: template.slug } }" exact)
     v-list-item-content All {{ template.plural }}

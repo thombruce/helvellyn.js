@@ -13,7 +13,7 @@ v-app(:dark="$vuetify.theme.dark")
         v-list-item-content New Workspace
         v-list-item-icon
           v-icon mdi-plus
-    template(v-slot:append)
+    template(v-slot:append="")
       v-list-item(
         @click.stop="$vuetify.theme.dark = !$vuetify.theme.dark"
       )
