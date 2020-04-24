@@ -103,7 +103,7 @@
     ],
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "**/*.{js,vue}",
+      "src/**/*.{js,vue}",
       "!**/node_modules/**"
     ]
   }
