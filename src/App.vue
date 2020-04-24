@@ -5,7 +5,7 @@
 </template>
 
 <script>
-const defaultLayout = 'application'
+const defaultLayout = 'authentication'
 
 export default {
   computed: {
