@@ -1,4 +1,6 @@
-# helvellyn.js
+# Helvellyn.js
+
+User interface built with Vue.js for [Helvellyn CMS](https://github.com/thombruce/helvellyn).
 
 ## Project setup
 ```
