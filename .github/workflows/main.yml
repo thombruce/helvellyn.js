@@ -22,4 +22,4 @@ jobs:
     - name: Run Tests
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-      run: npm test && npm codecov
+      run: npm test && ./node_modules/.bin/codecov
