@@ -12,8 +12,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
+
     - run: npm install
-    - run: npm test
+
+    - name: Run Tests
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      run: npm test && npm codecov
