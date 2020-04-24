@@ -2,10 +2,15 @@
 
 [Helvellyn](https://github.com/thombruce/helvellyn) | **Helvellyn.js** | [Credible](https://github.com/thombruce/credible)
 
-[![GitHub package.json version](https://img.shields.io/github/package-json/v/thombruce/helvellyn.js)](https://github.com/thombruce/helvellyn.js/releases)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/thombruce/helvellyn.js/CI?logo=github)](https://github.com/thombruce/helvellyn.js/actions)
+[![Become a Patron](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/thombruce)
+
+[![GitHub package.json version](https://img.shields.io/github/package-json/v/thombruce/helvellyn.js)](releases)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/thombruce/helvellyn.js/CI?logo=github)](actions)
 [![Codecov](https://img.shields.io/codecov/c/github/thombruce/helvellyn.js?logo=codecov)](https://codecov.io/gh/thombruce/helvellyn.js)
-[![GitHub issues](https://img.shields.io/github/issues-raw/thombruce/helvellyn.js?logo=github)](https://github.com/thombruce/helvellyn.js/issues)
+[![GitHub issues](https://img.shields.io/github/issues-raw/thombruce/helvellyn.js?logo=github)](issues)
+
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Discord](https://img.shields.io/discord/697123984231366716?color=7289da&label=chat&logo=discord)](https://discord.gg/JDSh5dQ)
 
 User interface built with Vue.js for [Helvellyn CMS](https://github.com/thombruce/helvellyn).
 
