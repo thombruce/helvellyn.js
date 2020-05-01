@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     component(:is="layout")
-      router-view
+      router-view(v-if="sessionLoaded")
 </template>
 
 <script>
@@ -13,9 +13,15 @@ export default {
       return (this.$route.meta.layout || defaultLayout) + '-layout'
     }
   },
-  created () {
+  async created () {
+    await this.fetchSession()
     // See mixins/settings.js
     this.fetchSettings()
+  },
+  methods: {
+    fetchSession () {
+      this.$store.dispatch('authentication/tokens/init')
+    }
   }
 }
 </script>
