@@ -13,7 +13,7 @@ const actions = {
 
         dispatch('authentication/tokens/create', { refreshToken, accessToken }, { root: true })
 
-        return rootGetters.authentication.tokens.currentSession
+        return rootGetters['authentication/tokens/currentSession']
       })
       .catch((error) => {
         return Promise.reject(error.response.data)
@@ -28,7 +28,7 @@ const actions = {
 
         dispatch('authentication/tokens/create', { refreshToken, accessToken }, { root: true })
 
-        return rootGetters.authentication.tokens.currentSession
+        return rootGetters['authentication/tokens/currentSession']
       })
       .catch((error) => {
         return Promise.reject(error.response.data)
@@ -43,7 +43,7 @@ const actions = {
 
         dispatch('authentication/tokens/create', { refreshToken, accessToken }, { root: true })
 
-        return rootGetters.authentication.tokens.currentSession
+        return rootGetters['authentication/tokens/currentSession']
       })
       .catch((error) => {
         return Promise.reject(error.response.data)
