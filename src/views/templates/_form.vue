@@ -33,7 +33,12 @@ v-form(ref="form" :model="template")
 
       v-select(label="Slug" :items="sluggableCandidates" v-model="template.sluggable_field")
 
-      v-dynamic-field-form(v-for="(field, i) in template.fields" v-model="template.fields[i]")
+      draggable(v-model="template.fields")
+        v-dynamic-field-form(
+          v-for="(field, i) in template.fields"
+          v-model="template.fields[i]"
+          v-on:remove-field="removeField(i)"
+        )
 
       v-dialog(v-model="dialog" persistent max-width="600px")
         template(v-slot:activator="{ on }")
@@ -56,6 +61,8 @@ v-form(ref="form" :model="template")
 </template>
 
 <script>
+import draggable from 'vuedraggable'
+
 import FieldTypes from '../../mixins/fieldTypes.js'
 
 import VDynamicFieldForm from '../../components/VDynamicFieldForm.vue'
@@ -73,6 +80,7 @@ export default {
     FieldTypes
   ],
   components: {
+    draggable,
     VDynamicFieldForm
   },
   data () {
@@ -101,6 +109,9 @@ export default {
     addField (type) {
       this.template.fields.push({ name: '', slug: '', type: type })
       this.dialog = false
+    },
+    removeField (index) {
+      this.template.fields.splice(index, 1)
     },
     updatePlural () {
       if (!this.template.id) {
