@@ -13,6 +13,9 @@ v-alert.my-2(
         v-text-field(label="Name" v-model="inputVal.slug" @input="updateName($event)")
       v-col(cols="12" sm="6")
         v-dynamic-field-type-select(label="Type" v-model="inputVal.type")
+
+    p
+      v-btn(text color="error" @click="$emit('remove-field')") Delete
 </template>
 
 <script>
