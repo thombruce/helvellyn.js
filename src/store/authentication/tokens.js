@@ -43,7 +43,7 @@ const actions = {
 
     setTimeout(() => {
       dispatch('refresh')
-    }, 12600000) // 3.5 hours - TODO: Use exp value provided by accessToken
+    }, 120000) // 2 minutes
 
     return state.accessToken
   },
@@ -76,7 +76,7 @@ const actions = {
 
           setTimeout(() => {
             dispatch('refresh')
-          }, 12600000) // 3.5 hours - TODO: Use exp value provided by accessToken
+          }, 120000) // 2 minutes
 
           return state.accessToken
         })
