@@ -63,7 +63,7 @@ const actions = {
     return axios
       .delete('/signout')
       .then((res) => {
-        dispatch('authentication/tokens/destroy', { root: true })
+        dispatch('authentication/tokens/destroy', null, { root: true })
         return true
       })
       .catch((error) => {
