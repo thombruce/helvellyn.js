@@ -4,11 +4,17 @@ const jwtDecode = require('jwt-decode')
 
 const state = () => ({
   sessionLoaded: false,
-  refreshToken: null,
   accessToken: null
 })
 
 const getters = {
+  accessTokenExpiresAt: (state) => {
+    if (state.accessToken) {
+      return jwtDecode(state.accessToken).exp
+    } else {
+      return null
+    }
+  },
   currentSession: (state) => {
     if (state.accessToken) {
       return jwtDecode(state.accessToken).data
@@ -27,13 +33,13 @@ const getters = {
 
 const actions = {
   async init ({ state, commit, dispatch }) {
-    await dispatch('refresh')
+    await dispatch('forceRefresh')
     commit('finish')
     return state.accessToken
   },
   create ({ state, commit, dispatch }, { refreshToken, accessToken }) {
     localStorage.setItem('refresh-token', refreshToken)
-    commit('insert', { refreshToken, accessToken })
+    commit('insert', { accessToken })
 
     setTimeout(() => {
       dispatch('refresh')
@@ -46,15 +52,27 @@ const actions = {
     commit('remove')
     return true
   },
-  refresh ({ state, commit, dispatch }) {
+  async refresh ({ state, getters, dispatch }) {
+    const accessToken = state.accessToken
+    const accessTokenExpiry = getters.accessTokenExpiresAt
+    const currentTime = Date.now() / 1000
+
+    if (!accessToken || accessTokenExpiry - 1800 < currentTime) {
+      await dispatch('forceRefresh')
+    }
+  },
+  async forceRefresh ({ state, commit, dispatch }) {
     const refreshToken = localStorage.getItem('refresh-token')
 
     if (refreshToken) {
-      return axios
+      await axios
         .post('/refresh', { refresh_token: refreshToken })
         .then((res) => {
-          localStorage.setItem('refresh-token', res.data.refresh_token)
-          commit('insert', { refreshToken: res.data.refresh_token, accessToken: res.data.access_token })
+          const refreshToken = res.data.refresh_token
+          const accessToken = res.data.access_token
+
+          localStorage.setItem('refresh-token', refreshToken)
+          commit('insert', { accessToken })
 
           setTimeout(() => {
             dispatch('refresh')
@@ -70,12 +88,10 @@ const actions = {
 }
 
 const mutations = {
-  insert (state, { refreshToken, accessToken }) {
-    state.refreshToken = refreshToken
+  insert (state, { accessToken }) {
     state.accessToken = accessToken
   },
   remove (state) {
-    state.refreshToken = null
     state.accessToken = null
   },
   finish (state) {
