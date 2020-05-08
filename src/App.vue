@@ -19,8 +19,8 @@ export default {
     this.fetchSettings()
   },
   methods: {
-    fetchSession () {
-      this.$store.dispatch('authentication/tokens/init')
+    async fetchSession () {
+      await this.$store.dispatch('authentication/tokens/init')
     }
   }
 }
