@@ -52,6 +52,9 @@ const actions = {
     commit('remove')
     return true
   },
+  /**
+   * Refresh session if accessToken is near expiry or doesn't exist
+   */
   async refresh ({ state, getters, dispatch }) {
     const accessToken = state.accessToken
     const accessTokenExpiry = getters.accessTokenExpiresAt
@@ -61,6 +64,9 @@ const actions = {
       await dispatch('forceRefresh')
     }
   },
+  /**
+   * Force session refresh without checking accessToken
+   */
   async forceRefresh ({ state, commit, dispatch }) {
     const refreshToken = localStorage.getItem('refresh-token')
 
