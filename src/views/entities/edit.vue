@@ -62,7 +62,7 @@ export default {
       })
     },
     update: function () {
-      this.$store.dispatch('entities/update', { workspaceId: this.$route.params.workspaceId, templateId: this.$route.params.templateId, entityId: this.$route.params.entityId, data: { [this.template.slug]: this.entity } }).then((res) => {
+      this.$store.dispatch('entities/update', { workspaceId: this.$route.params.workspaceId, templateId: this.$route.params.templateId, entityId: this.$route.params.entityId, data: this.entity }).then((res) => {
         this.$router.push({ name: 'entity_path', params: { entityId: res.slug } })
       }).catch((errors) => {
         this.entity.errors = errors

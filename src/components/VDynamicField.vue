@@ -37,6 +37,8 @@ export default {
           return 'v-rich-text-editor'
         case 'Date':
           return 'hvn-date-select'
+        case 'Upload':
+          return 'v-file-input'
         case 'Markdown':
           return 'v-markdown-editor'
         default:

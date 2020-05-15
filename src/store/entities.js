@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import axios from '../axios'
 
+import { objectToFormData } from 'object-to-formdata'
+
 import prototype from './prototypes/base'
 
 const state = () => ({
@@ -61,13 +63,15 @@ const actions = {
         console.log(error)
       })
   },
-  create ({ state, commit }, params) {
-    const workspaceId = params.workspaceId
-    const templateId = params.templateId
-    const payload = params.data
+  create ({ state, commit }, { workspaceId, templateId, data }) {
+    const axiosPath = '/workspaces/' + workspaceId + '/templates/' + templateId + '/entities'
+    const axiosHeaders = { headers: { 'Content-Type': 'multipart/form-data' } }
+
+    const payload = { [templateId]: data }
+    const formData = objectToFormData(payload)
 
     return axios
-      .post('/workspaces/' + workspaceId + '/templates/' + templateId + '/entities', payload)
+      .post(axiosPath, formData, axiosHeaders) // TODO: templateId should be singular - it isn't.
       .then((res) => {
         commit('insert', res.data)
         return Promise.resolve(state.list[res.data.slug]) // TODO: How should this be altered?
@@ -76,16 +80,17 @@ const actions = {
         return Promise.reject(error.response.data)
       })
   },
-  update ({ state, commit }, params) {
-    const workspaceId = params.workspaceId
-    const templateId = params.templateId
-    const entityId = params.entityId
-    const payload = params.data
+  update ({ state, commit }, { workspaceId, templateId, entityId, data }) {
+    const axiosPath = '/workspaces/' + workspaceId + '/templates/' + templateId + '/entities/' + entityId
+    const axiosHeaders = { headers: { 'Content-Type': 'multipart/form-data' } }
+
+    const payload = { [templateId]: data }
+    const formData = objectToFormData(payload)
 
     return axios
-      .patch('/workspaces/' + workspaceId + '/templates/' + templateId + '/entities/' + entityId, payload)
+      .patch(axiosPath, formData, axiosHeaders)
       .then((res) => {
-        commit('modify', { slug: params.entityId, data: res.data })
+        commit('modify', { slug: entityId, data: res.data })
         return Promise.resolve(state.list[res.data.slug]) // TODO: How should this be altered?
       })
       .catch((error) => {

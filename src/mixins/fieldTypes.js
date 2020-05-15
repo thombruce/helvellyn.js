@@ -21,6 +21,11 @@ const fieldTypes = {
           text: 'Date',
           value: 'Date',
           icon: 'mdi-calendar'
+        },
+        {
+          text: 'Upload',
+          value: 'Upload',
+          icon: 'mdi-paperclip'
         }
         // {
         //   text: 'Markdown',
