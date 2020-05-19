@@ -1,5 +1,5 @@
 <template lang="pug">
-v-dialog(v-model="dialog" persistent max-width="290")
+v-dialog(v-model="dialog" max-width="290")
   template(v-slot:activator="{ on }")
     v-btn(icon v-on="on")
       v-icon mdi-image
@@ -11,6 +11,7 @@ v-dialog(v-model="dialog" persistent max-width="290")
           label="Image URL"
           v-model="image.src"
         )
+          image-upload-dialog(slot="append" v-model="image.src")
         v-text-field.ma-0.pa-0(
           label="Alt Text"
           v-model="image.alt"
@@ -25,8 +26,13 @@ v-dialog(v-model="dialog" persistent max-width="290")
 </template>
 
 <script>
+import ImageUploadDialog from './RteImageDialog/ImageUploadDialog'
+
 export default {
   props: ['command'],
+  components: {
+    ImageUploadDialog
+  },
   data () {
     return {
       dialog: false,
