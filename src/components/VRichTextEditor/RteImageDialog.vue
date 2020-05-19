@@ -7,11 +7,10 @@ v-dialog(v-model="dialog" max-width="290")
     v-card-title(class="headline") Add an image
     v-form(@submit.prevent="setImageSrc(command, image)")
       v-card-text
-        v-text-field.ma-0.pa-0(
+        v-upload-field(
           label="Image URL"
           v-model="image.src"
-        )
-          image-upload-dialog(slot="append" v-model="image.src")
+          )
         v-text-field.ma-0.pa-0(
           label="Alt Text"
           v-model="image.alt"
@@ -26,12 +25,12 @@ v-dialog(v-model="dialog" max-width="290")
 </template>
 
 <script>
-import ImageUploadDialog from './RteImageDialog/ImageUploadDialog'
+import VUploadField from '../VUploadField.vue'
 
 export default {
   props: ['command'],
   components: {
-    ImageUploadDialog
+    VUploadField
   },
   data () {
     return {
