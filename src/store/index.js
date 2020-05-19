@@ -7,6 +7,7 @@ import authentication from './authentication'
 
 import workspaces from './workspaces'
 import users from './users'
+import uploads from './uploads'
 import templates from './templates'
 import entities from './entities'
 Vue.use(Vuex)
@@ -52,6 +53,7 @@ const store = new Vuex.Store({
     authentication,
     workspaces,
     users,
+    uploads,
     templates,
     entities
   }

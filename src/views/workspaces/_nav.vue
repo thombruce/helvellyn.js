@@ -11,6 +11,10 @@ v-list
     v-list-item-icon
       v-icon mdi-plus
     v-list-item-content New Type
+  v-list-item(:to="{ name: 'uploads_path', params: { workspaceId: workspace.slug } }")
+    v-list-item-icon
+      v-icon mdi-paperclip
+    v-list-item-content Uploads
   v-list-item(:to="{ name: 'users_path', params: { workspaceId: workspace.slug } }")
     v-list-item-icon
       v-icon mdi-account-multiple

@@ -26,6 +26,9 @@ const router = new VueRouter({
         { path: 'users/new', name: 'new_user_path', component: () => import('../views/users/new.vue'), meta: { layout: 'application' } },
         { path: 'users/:userId/edit', name: 'edit_user_path', component: () => import('../views/users/edit.vue'), meta: { layout: 'application' } },
         { path: 'users/:userId', name: 'user_path', component: () => import('../views/users/show.vue'), meta: { layout: 'application' } },
+        { path: 'uploads', name: 'uploads_path', component: () => import('../views/uploads/index.vue'), meta: { layout: 'application' } },
+        { path: 'uploads/new', name: 'new_upload_path', component: () => import('../views/uploads/new.vue'), meta: { layout: 'application' } },
+        { path: 'uploads/:uploadId', name: 'upload_path', component: () => import('../views/uploads/show.vue'), meta: { layout: 'application' } },
         { path: 'templates/new', name: 'new_template_path', component: () => import('../views/templates/new.vue'), meta: { layout: 'application' } },
         { path: ':templateId/edit', name: 'edit_template_path', component: () => import('../views/templates/edit.vue'), meta: { layout: 'application' } },
         {
