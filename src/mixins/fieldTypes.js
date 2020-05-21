@@ -23,6 +23,11 @@ const fieldTypes = {
           icon: 'mdi-calendar'
         },
         {
+          text: 'Tags',
+          value: 'Tags',
+          icon: 'mdi-tag'
+        },
+        {
           text: 'Upload',
           value: 'Upload',
           icon: 'mdi-paperclip'
