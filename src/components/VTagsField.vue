@@ -6,6 +6,7 @@ v-combobox(
   chips
   deletable-chips
   :append-icon="null"
+  :delimiters="[',']"
 )
 </template>
 
