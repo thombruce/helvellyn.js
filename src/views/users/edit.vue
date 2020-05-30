@@ -1,6 +1,6 @@
 <template lang="pug">
 div(v-if="user")
-  h1 Edit {{ user.name }}
+  h1 Edit {{ user.name || user.email }}
   v-form(ref="form" :model="user" @submit.prevent="submit")
     v-select(label="Role" :items="roles" v-model="user.role" :error-messages="user.errors.role")
     v-btn(color="primary" type="submit") Submit

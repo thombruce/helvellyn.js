@@ -13,7 +13,7 @@ div
     tbody
       tr(v-for="user in users")
         td
-          router-link(:to="{ name: 'user_path', params: { userId: user.id } }") {{ user.name }}
+          router-link(:to="{ name: 'user_path', params: { userId: user.id } }") {{ user.name || user.email }}
         td {{ user.role }}
         td
           router-link.mr-1(:to="{ name: 'user_path', params: { userId: user.id } }") View
