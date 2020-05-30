@@ -4,6 +4,7 @@ div(v-if="user")
   v-form(ref="form" :model="user" @submit.prevent="update")
     v-text-field(label="Name" v-model="user.name" :error-messages="user.errors.name")
     v-text-field(label="Email" v-model="user.email" :error-messages="user.errors.email")
+    v-text-field(label="Username" v-model="user.username" :error-messages="user.errors.username")
     v-text-field(label="Password" type="password" v-model="user.password" :error-messages="user.errors.password")
     v-btn(color="primary" type="submit") Save
 

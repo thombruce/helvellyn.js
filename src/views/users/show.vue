@@ -4,7 +4,7 @@ div(v-if="user")
   p
     strong Name
     | &nbsp;
-    span {{ user.name }}
+    span {{ user.name || user.email }}
   p
     strong Role
     | &nbsp;
