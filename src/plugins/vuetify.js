@@ -12,10 +12,10 @@ const opts = {
     dark: null,
     themes: {
       dark: {
-        primary: colors.blue.darken2
+        primary: colors.amber.darken1
       },
       light: {
-        primary: colors.blue.darken1
+        primary: colors.amber
       }
     }
   }
