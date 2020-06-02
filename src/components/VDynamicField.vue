@@ -5,7 +5,6 @@ component(:is="fieldComponent" :label="label" v-model="inputVal")
 <script>
 import VRichTextEditor from './VRichTextEditor.vue'
 import VMarkdownEditor from './VMarkdownEditor.vue'
-import VTagsField from './VTagsField.vue'
 import VUploadField from './VUploadField.vue'
 import HvnDateSelect from './inputs/HvnDateSelect.vue'
 
@@ -18,7 +17,6 @@ export default {
   components: {
     VRichTextEditor,
     VMarkdownEditor,
-    VTagsField,
     VUploadField,
     HvnDateSelect
   },
@@ -42,7 +40,7 @@ export default {
         case 'Date':
           return 'hvn-date-select'
         case 'Tags':
-          return 'v-tags-field'
+          return 'bru-tags-field'
         case 'Upload':
           return 'v-upload-field'
         case 'Markdown':

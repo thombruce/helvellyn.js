@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "brucify": "https://github.com/thombruce/brucify.git",
     "core-js": "^3.6.4",
     "deepmerge": "^4.2.2",
     "dompurify": "^2.0.8",

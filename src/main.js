@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import Brucify from 'brucify/src/index.js'
+
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -17,6 +19,9 @@ Vue.component('application-layout', ApplicationLayout)
 Vue.component('authentication-layout', AuthenticationLayout)
 Vue.mixin(Settings)
 Vue.mixin(Session)
+
+const options = {}
+Vue.use(Brucify, options)
 
 export default new Vue({
   router,
