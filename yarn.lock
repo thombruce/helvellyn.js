@@ -2543,10 +2543,11 @@ browserslist@^4.0.0, browserslist@^4.12.0, browserslist@^4.8.5:
     pkg-up "^2.0.0"
 
 "brucify@https://github.com/thombruce/brucify.git":
-  version "0.1.0"
-  resolved "https://github.com/thombruce/brucify.git#ce7d220f6c8de32906c5f8e49ce273ee8b89fa02"
+  version "0.1.1"
+  resolved "https://github.com/thombruce/brucify.git#878a0c29befd4d1979cece9e1fd1ffba797ab1a2"
   dependencies:
     core-js "^3.6.4"
+    dompurify "^2.0.11"
     marked "^0.8.2"
     parameterize "^1.0.0"
     pluralize "^8.0.0"
@@ -3897,6 +3898,11 @@ domhandler@^2.3.0:
   integrity sha512-JiK04h0Ht5u/80fdLMCEmV4zkNh2BcoMFBmZ/91WtYZ8qVXSKjiw7fXMgFPnHcSZgOo3XdinHvmnDUeMf5R4wA==
   dependencies:
     domelementtype "1"
+
+dompurify@^2.0.11:
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.0.11.tgz#cd47935774230c5e478b183a572e726300b3891d"
+  integrity sha512-qVoGPjIW9IqxRij7klDQQ2j6nSe4UNWANBhZNLnsS7ScTtLb+3YdxkRY8brNTpkUiTtcXsCJO+jS0UCDfenLuA==
 
 domutils@1.5.1:
   version "1.5.1"
