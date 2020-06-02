@@ -1,27 +1,14 @@
 <template lang="pug">
-component(:is="fieldComponent" :label="label" v-model="inputVal")
+component(:is="fieldComponent" :label="label" v-model="inputVal" :uploadMethod="uploadMethod")
 </template>
 
 <script>
-import VRichTextEditor from './VRichTextEditor.vue'
-import VMarkdownEditor from './VMarkdownEditor.vue'
-import VTagsField from './VTagsField.vue'
-import VUploadField from './VUploadField.vue'
-import HvnDateSelect from './inputs/HvnDateSelect.vue'
-
 export default {
   props: [
     'value',
     'label',
     'type'
   ],
-  components: {
-    VRichTextEditor,
-    VMarkdownEditor,
-    VTagsField,
-    VUploadField,
-    HvnDateSelect
-  },
   computed: {
     inputVal: {
       get () {
@@ -38,18 +25,27 @@ export default {
         case 'Text':
           return 'v-textarea'
         case 'Rich Text':
-          return 'v-rich-text-editor'
+          return 'bru-text-editor'
         case 'Date':
-          return 'hvn-date-select'
+          return 'bru-date-select'
         case 'Tags':
-          return 'v-tags-field'
+          return 'bru-tags-field'
         case 'Upload':
-          return 'v-upload-field'
+          return 'bru-attachment-field'
         case 'Markdown':
-          return 'v-markdown-editor'
+          return 'bru-markdown-editor'
         default:
           return 'v-text-field'
       }
+    }
+  },
+  methods: {
+    uploadMethod: function (upload) {
+      return this.$store.dispatch('uploads/create', { workspaceId: this.$route.params.workspaceId, data: { upload } }).then((res) => {
+        return res.file
+      }).catch((errors) => {
+        upload.errors = errors
+      })
     }
   }
 }
