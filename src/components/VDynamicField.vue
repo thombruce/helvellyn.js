@@ -4,7 +4,6 @@ component(:is="fieldComponent" :label="label" v-model="inputVal" :uploadMethod="
 
 <script>
 import VMarkdownEditor from './VMarkdownEditor.vue'
-import HvnDateSelect from './inputs/HvnDateSelect.vue'
 
 export default {
   props: [
@@ -13,8 +12,7 @@ export default {
     'type'
   ],
   components: {
-    VMarkdownEditor,
-    HvnDateSelect
+    VMarkdownEditor
   },
   computed: {
     inputVal: {
@@ -34,7 +32,7 @@ export default {
         case 'Rich Text':
           return 'bru-text-editor'
         case 'Date':
-          return 'hvn-date-select'
+          return 'bru-date-select'
         case 'Tags':
           return 'bru-tags-field'
         case 'Upload':
