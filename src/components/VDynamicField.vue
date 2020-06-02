@@ -3,17 +3,12 @@ component(:is="fieldComponent" :label="label" v-model="inputVal" :uploadMethod="
 </template>
 
 <script>
-import VMarkdownEditor from './VMarkdownEditor.vue'
-
 export default {
   props: [
     'value',
     'label',
     'type'
   ],
-  components: {
-    VMarkdownEditor
-  },
   computed: {
     inputVal: {
       get () {
@@ -38,7 +33,7 @@ export default {
         case 'Upload':
           return 'bru-attachment-field'
         case 'Markdown':
-          return 'v-markdown-editor'
+          return 'bru-markdown-editor'
         default:
           return 'v-text-field'
       }
